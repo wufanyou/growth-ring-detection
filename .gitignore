@@ -1,1 +1,8 @@
-
+mlruns/*
+models/*
+*.xml
+*.zip
+*.jpg
+.idea/*
+*ipynb*
+sync.py

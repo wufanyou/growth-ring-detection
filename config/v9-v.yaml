@@ -1,0 +1,58 @@
+﻿# path to dataset, need modification if necessary
+DATASET:
+  PATH: ../train-data-v7/train-data/
+  LABEL_SHAPE: [128, 128]
+  IMAGE_SHAPE: [128, 128]
+  VERSION: DatasetV9
+  # SMOOTH: 3
+
+# path to save the model, need modification if necessary
+EXPERIMENT:
+  SAVER:
+    DIRPATH: ./models/
+    save_last: true
+
+LOSS:
+  VERSION: HybridV4
+  ARGS:
+    alpha: 0.8
+
+MODEL:
+  VERSION: FPNV5
+  REPLACE_RELU: true
+  ENCODER: efficientnet-b0
+  HEAD_PARAMS: null
+  IN_CHANNELS: 1
+  
+LIGHTING:
+  VERSION: LightingModuleV4
+
+TRANSFORM:
+  VERSION: TransformV4
+
+
+TRAINER:
+  #MAX_EPOCHS: 500
+  GPUS: 1
+  #ACCELERATOR: ddp
+  #SYNC_BATCHNORM: true
+  NUM_NODES: 1
+  MAX_STEPS: 3000
+  check_val_every_n_epoch: 3000
+  #gradient_clip_val: 0.5
+
+OPTIMIZER:
+  ARGS:
+    LR: 0.0001
+  SCHEDULER:
+    USE: false
+    # VERSION: linear_schedule_with_warmup
+
+DATALOADER:
+  BATCH_SIZE:
+    TRAIN: 32
+    TEST: 32
+    VAL: 32
+  VERSION: DataLoaderV2
+  
+SEED: 1024
